@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+    <style>
+        td {border: 1px solid black}
+        table{border: 1px solid black}
+    </style>
+</head>
+<body>
+<div th:fragment="navigator">
+    <table>
+
+            <td>
+                <a th:href="@{/}">Home</a>
+            </td>
+
+            <td>
+                <a th:href="@{/expenses/addAndList}">Bierzące wydatki</a>
+            </td>
+
+            <td>
+                <a th:href="@{/expenditure_statistics/getList}">Statystyki Wydatków</a>
+            </td>
+
+            <td>
+                  <a th:href="@{/sorce/sorce}">zakładka</a>
+            </td>
+
+        <td>
+            <a th:href="@{/sorce/sorce}">zakładka</a>
+        </td>
+
+        <td>
+            <a th:href="@{/sorce/sorce}">zakładka</a>
+        </td>
+
+    </table>
+</div>
+</body>
+</html>

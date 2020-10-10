@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org"><head>
+    <meta charset="UTF-8">
+    <title>Bierzące wydatki</title>
+</head>
+<body>
+<h1>Bierzące wydatki</h1>
+<div th:replace="fragments :: navigator"></div>
+
+<br/>
+<br/>
+<-- tabela dodawania wydatków -->
+<table>
+<form th:action="@{/expenses/addAndList}" th:method="post" th:object="${newExpenses}">
+
+
+    <td>
+    kwota: <input th:field="*{amount}" placeholder="Ile kasy przewaliłeś?" required />
+    </td>
+
+
+    <td>
+    kategoria:<select th:field="*{expensesCategory}">
+    <option th:each="categoryEnum : ${T(kos.project.projecttohouse.model.ExpensesCategory).values()}"
+            th:value="${categoryEnum}"
+            th:text="${categoryEnum}">
+    </option>
+    </select>
+    </td>
+
+    <td>
+    data: <input type="date" th:field="*{expensesDate}" required />
+    </td>
+
+    <td>
+    komentarz: <input th:field="*{comment}"/>
+    </td>
+
+    <td>
+    <input type="submit">
+    </td>
+
+</form>
+
+</table>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<h1>Lista Wydatków</h1>
+
+<--tabela z ostatnio wprowadzanymi wydatkami -->
+<table>
+
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Kwota</th>
+        <th>Kategoria</th>
+        <th>Data</th>
+        <th>Komentarz</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="expenses:${listOfExpenses}">
+        <td th:text="${expenses.id}"></td>
+        <td th:text="${expenses.amount}"></td>
+        <td th:text="${expenses.expensesCategory.toString()}"></td>
+        <td th:text="${expenses.expensesDate.toString()}"></td>
+        <td th:text="${expenses.comment}"></td>
+        <td>
+            <a th:href="@{'/expenses/delete/' +${expenses.id}}">Usuń</a>
+        </td>
+    </tr>
+    </tbody>
+
+</table>
+
+
+</body>
+</html>

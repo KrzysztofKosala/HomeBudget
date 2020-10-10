@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org"><head>
+    <meta charset="UTF-8">
+    <title>Statystyki wydatków</title>
+</head>
+<body>
+<h1>Statystyki Wydatków</h1>
+<div th:replace="fragments :: navigator"></div>
+
+<br/>
+<br/>
+<h3>Wybierz zakres dat</h3>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<h1>Lista Wydatków w Wybranym Okresie</h1>
+<table>
+
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Kwota</th>
+        <th>Kategoria</th>
+        <th>Data</th>
+        <th>Komentarz</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="expenses:${expenditureStatisticsList}">
+        <td th:text="${expenses.id}"></td>
+        <td th:text="${expenses.amount}"></td>
+        <td th:text="${expenses.expensesCategory.toString()}"></td>
+        <td th:text="${expenses.expensesDate.toString()}"></td>
+        <td th:text="${expenses.comment}"></td>
+    </tr>
+    </tbody>
+
+</table>
+
+
+</body>
+</html>
